@@ -21,15 +21,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-//	CString mvalBookTitle;
-//	CString mvalBookKeyword;
-//	CString mvalBookSummary;
-//	CComboBox mvalBookPublishYear;
 	CEdit mctrlBookTitle;
-//	CEdit mctrlBookKeyword;
-//	CEdit mctrlBookSummary;
-//	CComboBox mctrlBookPublishedYear;
-//	CString mvalBookPublishedYear;
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedOk();
 
@@ -38,7 +30,6 @@ public:
 	CString mvalPublishedMonth;
 	CString mvalPublishedDay;
 	CString mvalSummary;
-//	CString mvalKeyword;
 	CString mvalBookName;
 	CString mvalKeyword;
 	CComboBox mctrlPublishedMonth;

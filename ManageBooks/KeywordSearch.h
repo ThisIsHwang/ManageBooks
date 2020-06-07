@@ -30,13 +30,10 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-
 	virtual BOOL OnInitDialog();
 	CListCtrl mctrlList;
 	afx_msg void OnBnClickedOk();
 	CString mvalKeywords;
 };
-
-
-
+void SearchRecursive(int SearchedBookIndex[100], int* pSearchedBookCnt, CString SearchTags[], int recursiveCnt);
 void KeywordToTag(CString str, CString s[]);

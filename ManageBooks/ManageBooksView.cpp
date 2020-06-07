@@ -66,7 +66,6 @@ void CManageBooksView::OnInitialUpdate()
 	CString s;
 	static int initialized = 0;
 	LV_COLUMN col;
-	int temp = 0;
 	WCHAR col_name[COLUMN_NUMBER][10] = { L"책 제목", L"키워드", L"책 개요", L"출판년도" };
 	int width[COLUMN_NUMBER] = { 100, 200, 250, 100 };
 	if (!initialized) {
@@ -79,7 +78,6 @@ void CManageBooksView::OnInitialUpdate()
 			mctrlList.InsertColumn(i, &col);
 		}
 		mctrlList.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
-		mctrlList.InsertItem(p->mBookCnt, p->mBook[p->mBookCnt].title);
 	}
 	initialized = 1;
 	mctrlList.DeleteAllItems();
@@ -94,7 +92,7 @@ void CManageBooksView::OnInitialUpdate()
 				continue;
 			s = s + L"#" + p->mBook[i].keywords[ii] + L" ";
 		}
-		
+
 		mctrlList.SetItemText(i, 1, s);
 		mctrlList.SetItemText(i, 2, p->mBook[i].BookSummary);
 		s = "";
@@ -113,8 +111,7 @@ void CManageBooksView::OnInitialUpdate()
 			s = s + t + L".";
 		}
 		mctrlList.SetItemText(i, 3, s);
-	}
-		
+	}	
 }
 
 

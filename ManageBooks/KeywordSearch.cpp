@@ -48,12 +48,10 @@ BOOL KeywordSearch::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	CString s;
-	static int initialized = 0;
 	LV_COLUMN col;
 	int temp = 0;
 	WCHAR col_name[COLUMN_NUMBER][10] = { L"책 제목", L"키워드", L"책 개요", L"출판년도" };
 	int width[COLUMN_NUMBER] = { 100, 200, 250, 100 };
-	if (!initialized) {
 		for (int i = 0; i < COLUMN_NUMBER; i++) {
 			col.mask = LVCF_FMT | LVCF_SUBITEM | LVCF_TEXT | LVCF_WIDTH;
 			col.fmt = LVCFMT_CENTER;
@@ -63,24 +61,20 @@ BOOL KeywordSearch::OnInitDialog()
 			mctrlList.InsertColumn(i, &col);
 		}
 		mctrlList.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
-	}
 	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 	return TRUE;  // return TRUE unless you set the focus to a control
-				  // 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 void SearchRecursive(int SearchedBookIndex[100], int* pSearchedBookCnt, CString SearchTags[], int recursiveCnt) {
 	int tempCnt = *pSearchedBookCnt;
-	if (SearchTags[recursiveCnt] == L"") return;
+	if (recursiveCnt == 5 || SearchTags[recursiveCnt] == L"" ) return;
 	*pSearchedBookCnt = 0;
 	CManageBooksDoc* p = (CManageBooksDoc*)((CMainFrame*)AfxGetApp()->m_pMainWnd)->GetActiveDocument();
-	for (int i = 0; i < tempCnt; i++) {
-		for (int ii = 0; ii < 5; ii++) {
-			if (p->mBook[SearchedBookIndex[i]].keywords[ii] == SearchTags[recursiveCnt] && SearchTags[recursiveCnt] != L"") {
+	for (int i = 0; i < tempCnt; i++) 
+		for (int ii = 0; ii < 5; ii++) 
+			if (p->mBook[SearchedBookIndex[i]].keywords[ii] == SearchTags[recursiveCnt] && SearchTags[recursiveCnt] != L"") 
 				SearchedBookIndex[(*pSearchedBookCnt)++] = SearchedBookIndex[i];
-			}
-		}
-	}
+	
 	recursiveCnt++;
 	SearchRecursive(SearchedBookIndex, pSearchedBookCnt, SearchTags, recursiveCnt);
 }

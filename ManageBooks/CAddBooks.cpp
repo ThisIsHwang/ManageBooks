@@ -101,7 +101,7 @@ void CAddBooks::OnBnClickedOk()
 		MessageBox(L"출판년도를 입력하세요.");
 		return;
 	}
-	if (mvalPublishedDay.Trim() > L"31" || _ttoi(mvalPublishedMonth.Trim()) > 12) {
+	if (_ttoi(mvalPublishedDay.Trim()) > 31 || _ttoi(mvalPublishedMonth.Trim()) > 12) {
 		MessageBox(L"출판년도를 확인하세요.");
 		return;
 	}
